@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\ResourceCollection;
 
-class ProductResource extends ResourceCollection
+class VoucherResource extends ResourceCollection
 {
     /**
      * Transform the resource collection into an array.
@@ -17,10 +17,9 @@ class ProductResource extends ResourceCollection
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'price' => $this->price,
-            'image' => route('index') . '/' . $this->image,
-            'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at,
+            'code' =>  $this->code,
+            'type' => $this->type,
+            'tgl_akhir_berlaku' => $this->tgl_akhir_berlaku,
         ];
     }
 }

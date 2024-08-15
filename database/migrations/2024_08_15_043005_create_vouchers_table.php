@@ -11,14 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('products', function (Blueprint $table) {
+        Schema::create('vouchers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->longText('desc')->nullable();
-            $table->decimal('price', 10, 2)->default(0);
-            $table->tinyInteger('is_published')->default(0);
-            $table->string('image');
+            $table->enum('type', ['discount_percentage', 'discount_price'])->default('discount_price');
+            $table->string('code')->unique();
+            $table->timestamp('tgl_mulai_berlaku');
+            $table->timestamp('tgl_akhir_berlaku');
+            $table->tinyInteger('is_active')->default(0);
             $table->timestamps();
+            $table->index('code');
         });
     }
 
@@ -27,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('vouchers');
     }
 };

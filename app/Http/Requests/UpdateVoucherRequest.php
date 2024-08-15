@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreCartRequest extends FormRequest
+class UpdateVoucherRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,12 @@ class StoreCartRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'product_id' => 'required|exists:products,id'
+            'name' => 'required',
+            'desc' => 'nullable',
+            'type' => 'required|in:discount_percentage,discount_price',
+            'code' => 'required|unique:vouchers,code,' . $this->id,
+            'tgl_mulai_berlaku' => 'required',
+            'tgl_akhir_berlaku' => 'required',
         ];
     }
 }

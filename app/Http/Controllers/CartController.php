@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreCartRequest;
 use App\Models\Cart;
 use App\Services\CartService;
 use Illuminate\Http\Request;
@@ -38,9 +39,31 @@ class CartController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreCartRequest $request)
     {
-        //
+        try{
+
+            $result = $this->cartService->addItemToCart($request);
+
+            if(!$result){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Stock is low',
+                    'data' => null,
+                ], 400);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Data retrieved successfully',
+                'data' => $result,
+            ], 200);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Internal server error',
+            ], 500);
+        }
     }
 
     /**
@@ -54,16 +77,44 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, $cart)
     {
-        //
+        try{
+
+            $result = $this->cartService->updateItemInCart($request, $cart);
+
+            if(!$result['success']){
+                return response()->json($result, 400);
+            }
+
+            return response()->json($result, 200);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Internal server error',
+            ], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Cart $cart)
+    public function destroy($cart)
     {
-        //
+        try{
+
+            $result = $this->cartService->deleteItemInCart($cart);
+
+            if(!$result['success']){
+                return response()->json($result, 404);
+            }
+
+            return response()->json($result, 200);
+        } catch (\Throwable $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Internal server error',
+            ], 500);
+        }
     }
 }
