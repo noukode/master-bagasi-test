@@ -62,24 +62,119 @@ class VoucherController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Voucher $voucher)
+    public function show_active($voucher)
     {
-        //
+        try{
+            $result = $this->voucherService->show_active($voucher);
+
+            if(!$result){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Data not found',
+                ], 404);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Process success',
+                'data' => $result,
+            ], 201);
+        }catch(Throwable $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'Internal server error',
+            ], 500);
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($voucher)
+    {
+        try{
+            $result = $this->voucherService->show($voucher);
+
+            if(!$result){
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Data not found',
+                ], 404);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Process success',
+                'data' => $result,
+            ], 201);
+        }catch(Throwable $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'Internal server error',
+            ], 500);
+        }
+    }
+
+    public function check_apply_voucher(Request $request)
+    {
+        try{
+            $result = $this->voucherService->show($request->code);
+
+            if(!$result['success']){
+                return response()->json($result, 404);
+            }
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Process success',
+                'data' => $result,
+            ], 201);
+        }catch(Throwable $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'Internal server error',
+            ], 500);
+        }
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateVoucherRequest $request, Voucher $voucher)
+    public function update(UpdateVoucherRequest $request, $voucher)
     {
-        //
+        try{
+            $result = $this->voucherService->update($request, $voucher);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Process success',
+                'data' => $result,
+            ], 201);
+        }catch(Throwable $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'Internal server error',
+            ], 500);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Voucher $voucher)
+    public function destroy($voucher)
     {
-        //
+        try{
+            $result = $this->voucherService->destroy($voucher);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Process success',
+            ], 201);
+        }catch(Throwable $e){
+            return response()->json([
+                'success' => false,
+                'message' => 'Internal server error',
+            ], 500);
+        }
     }
 }

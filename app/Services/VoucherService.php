@@ -89,7 +89,7 @@ class VoucherService
 
     public function destroy($id)
     {
-        $voucher = Voucher::where('id', $id)->first();
+        $voucher = Voucher::where('id', $id)->delete();
 
         return $voucher;
     }
