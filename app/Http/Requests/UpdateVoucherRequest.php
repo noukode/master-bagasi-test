@@ -11,7 +11,7 @@ class UpdateVoucherRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,11 +21,12 @@ class UpdateVoucherRequest extends FormRequest
      */
     public function rules(): array
     {
+        $request = $this->request->all();
         return [
             'name' => 'required',
             'desc' => 'nullable',
             'type' => 'required|in:discount_percentage,discount_price',
-            'code' => 'required|unique:vouchers,code,' . $this->id,
+            'code' => 'required|unique:vouchers,code,' . $this->voucher,
             'tgl_mulai_berlaku' => 'required',
             'tgl_akhir_berlaku' => 'required',
         ];

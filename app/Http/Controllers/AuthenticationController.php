@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\AuthenticationServices;
+use App\Services\AuthenticationService;
 use Illuminate\Http\Request;
 use Throwable;
 
@@ -11,7 +11,7 @@ class AuthenticationController extends Controller
     protected $authenticationService;
     public function __construct()
     {
-        $this->authenticationService = new AuthenticationServices();
+        $this->authenticationService = new AuthenticationService();
     }
 
     public function login(Request $request)

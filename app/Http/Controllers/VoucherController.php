@@ -118,7 +118,7 @@ class VoucherController extends Controller
     public function check_apply_voucher(Request $request)
     {
         try{
-            $result = $this->voucherService->show($request->code);
+            $result = $this->voucherService->check_apply_voucher($request->code);
 
             if(!$result['success']){
                 return response()->json($result, 404);

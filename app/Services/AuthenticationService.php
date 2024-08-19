@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
-class AuthenticationServices
+class AuthenticationService
 {
     public function attempt_login(Request $request)
     {
