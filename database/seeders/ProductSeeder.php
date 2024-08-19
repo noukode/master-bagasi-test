@@ -20,6 +20,7 @@ class ProductSeeder extends Seeder
                 'price' => 10_000_000,
                 'is_published' => 1,
                 'image' => 'blank.jpg',
+                'stock' => 20,
             ],
             [
                 'name' => 'LAPTOP ASUS 14 g102au',
@@ -27,6 +28,7 @@ class ProductSeeder extends Seeder
                 'price' => 8_000_000,
                 'is_published' => 1,
                 'image' => 'blank.jpg',
+                'stock' => 20,
             ],
             [
                 'name' => 'MACBOOK PRO M1',
@@ -34,6 +36,7 @@ class ProductSeeder extends Seeder
                 'price' => 22_000_000,
                 'is_published' => 1,
                 'image' => 'blank.jpg',
+                'stock' => 20,
             ],
             [
                 'name' => 'SAMSUNG GALAXY S23 5G',
@@ -41,6 +44,7 @@ class ProductSeeder extends Seeder
                 'price' => 13_000_000,
                 'is_published' => 1,
                 'image' => 'blank.jpg',
+                'stock' => 20,
             ],
             [
                 'name' => 'iPhone 15 Pro Max 256 GB',
@@ -48,6 +52,7 @@ class ProductSeeder extends Seeder
                 'price' => 16_000_000,
                 'is_published' => 1,
                 'image' => 'blank.jpg',
+                'stock' => 20,
             ],
             [
                 'name' => 'Nothing Phone 1 128 GB',
@@ -55,6 +60,7 @@ class ProductSeeder extends Seeder
                 'price' => 11_000_000,
                 'is_published' => 1,
                 'image' => 'blank.jpg',
+                'stock' => 20,
             ],
         ]);
     }

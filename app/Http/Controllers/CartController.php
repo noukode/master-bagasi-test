@@ -32,6 +32,7 @@ class CartController extends Controller
             return response()->json([
                 'success' => false,
                 'message' => 'Internal server error',
+                'error' => $e->getMessage(),
             ], 500);
         }
     }

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\VoucherController;
 use Illuminate\Http\Request;
@@ -40,4 +41,6 @@ Route::group(['middleware' => 'auth:api'], function(){
     Route::get('/vouchers/{voucher}', [VoucherController::class, 'show_active']);
     Route::put('/vouchers/{voucher}', [VoucherController::class, 'update']);
     Route::delete('/vouchers/{voucher}', [VoucherController::class, 'destroy']);
+    Route::post('/checkout', [CheckoutController::class, 'create_transaction']);
+    Route::get('/checkout/{checkout}', [CheckoutController::class, 'show']);
 });

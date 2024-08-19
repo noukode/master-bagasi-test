@@ -19,7 +19,7 @@ class CartService
             $take = $request->perPage;
         }
 
-        $query = Cart::select()->with('product_detail');
+        $query = Cart::select()->with('product_detail')->where('user_id', auth()->user()->id);
 
         if($request->direction){
             $query = $query->orderBy('created_at', $request->direction);
@@ -31,7 +31,7 @@ class CartService
 
         return [
             'totalCount' => $totalCount,
-            'data' => CartResource::collection($result),
+            'data' => $result,
         ];
 
     }

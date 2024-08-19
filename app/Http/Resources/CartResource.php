@@ -17,7 +17,7 @@ class CartResource extends ResourceCollection
         return [
             'id' => $this->id,
             'product_id' => $this->product_id,
-            'product_detail' => $this->product_detail,
+            'product_detail' => $this->product_detail ?? null,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ];

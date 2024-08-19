@@ -27,7 +27,7 @@ class ActivateVoucher extends Command
      */
     public function handle()
     {
-        Voucher::where('tgl_mulai_berlaku', '>=', Carbon::now())->where('is_active', 0)->update([
+        Voucher::whereDate('tgl_mulai_berlaku', '<=', Carbon::now())->where('is_active', 0)->update([
             'is_active' => 1,
         ]);
     }
